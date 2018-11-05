@@ -29,7 +29,7 @@ def get_tmax_data():
     station_names = []
     tmaxes = []
     # 9861
-    for year in range(2015, 2015+1):
+    for year in range(1990, 2017+1):
             if calendar.isleap(year):
                 month_end_list = [1, 32, 61, 92, 122, 153, 183, 214, 245, 275, 306, 336]
                 end_date = 366
@@ -77,7 +77,7 @@ def get_tmax_data():
         'Station': station_names,
         'Tmax': tmaxes
         })
-    tmax_df.to_csv('tmax_data_daily2015.csv', index=False)
+    tmax_df.to_csv('tmax_data_1990-2017.csv', index=False)
 
 def get_rh_data():
     colnames=['USAF', 'WBAN', 'API_Station', 'STATION_NAME', 'CT', 'ST', 'CALL', 'LAT', 'LON', 'ELEV_M', 'BEGIN', 'END']
@@ -99,15 +99,13 @@ def get_rh_data():
     station_names = []
     rhs = []
     # 9861
-    for year in range(2015, 2015+1):
+    for year in range(1990, 2017+1):
             if calendar.isleap(year):
                 end_date = 366
                 month_end_list = [1, 32, 61, 92, 122, 153, 183, 214, 245, 275, 306, 336]
-                #month_end_list = [1, 32, 61, 92, 122, 153, 183, 214, 245]
             else:
                 end_date = 365
                 month_end_list = [1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335]
-                #month_end_list = [1, 32, 60, 91, 121, 152, 182, 213, 244]
             cadence = range(1, end_date+1)
             # Iterate over all dates in year
             for julian_day in cadence:
@@ -142,9 +140,7 @@ def get_rh_data():
                         dates.append(x['DATE'])
                         station_names.append(x['STATION'])
                         rh = x['RH1'].split(',')[0]
-                        rhs.append(rh)
-                
-                
+                        rhs.append(rh)          
 
     rh_df = pandas.DataFrame(
         {'Date': dates,
@@ -154,6 +150,6 @@ def get_rh_data():
     rh_df.to_csv('rh_data_daily2015.csv', index=False)
 
 if __name__ == "__main__":
-    #get_tmax_data()
-    get_rh_data()
+    get_tmax_data()
+    #get_rh_data()
     
