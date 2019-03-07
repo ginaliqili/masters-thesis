@@ -3,7 +3,7 @@ import glob
 import datetime
 import pandas as pd
 
-tif_path = "G:\My Drive\Year 2\Thesis\Backup_Plan\weather\\virginia\\tmmx\\"
+tif_path = "C:\\Users\\ginal\\Documents\\thesis_data\\1990-2016\\rmax\\virginia\\"
 va_climate_divisions_shp = "C:\\Users\ginal\Documents\GitHub\masters-thesis\Maps\VA_Climate_Divisions_wgs84.shp"
 
 dates = []
@@ -30,8 +30,6 @@ zonal_stats_df = pd.DataFrame(
     }
 )
 
-output_path = tif_path + "zonal_stats2\\"
-import IPython
-IPython.embed()
-zonal_stats_df.to_csv(output_path + "zonal_stats.csv")
+output_path = tif_path + "zonal_stats\\"
+zonal_stats_df.to_csv(output_path + "zonal_stats_rmax.csv", index=False)
 

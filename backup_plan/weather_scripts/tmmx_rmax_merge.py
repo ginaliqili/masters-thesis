@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 
-rmax_zonal_stats_csv = "G:\My Drive\Year 2\Thesis\Backup_Plan\weather\\virginia\\rmax\zonal_stats\zonal_stats_rmax.csv"
-tmmx_zonal_stats_csv = "G:\My Drive\Year 2\Thesis\Backup_Plan\weather\\virginia\\tmmx\zonal_stats\zonal_stats_tmmx.csv"
+rmax_zonal_stats_csv = "C:\\Users\\ginal\\Documents\\thesis_data\\1990-2016\\rmax\\virginia\\zonal_stats\\zonal_stats_rmax.csv"
+tmmx_zonal_stats_csv = "C:\\Users\\ginal\\Documents\\thesis_data\\1990-2016\\tmmx\\virginia\\zonal_stats\\zonal_stats_tmmx.csv"
 
 rmax_zonal_stats_df = pd.read_csv(rmax_zonal_stats_csv)
 tmmx_zonal_stats_df = pd.read_csv(tmmx_zonal_stats_csv)
@@ -31,7 +31,7 @@ if rmax_zonal_stats_df['date'].equals(tmmx_zonal_stats_df['date']) and rmax_zona
     df.loc[(df['rmax'] < 13) & (df['tmmx_f'] >= 80) & (df['tmmx_f'] <= 112), 'heat_index'] = df['heat_index'] - ((13-df['rmax'])/4)*((17-abs(df['tmmx_f']-95.0)).apply(np.sqrt)/17)
     df.loc[(df['rmax'] > 85) & (df['tmmx_f'] >= 80) & (df['tmmx_f'] <= 87), 'heat_index'] = df['heat_index'] + ((df['rmax']-85)/10) * ((87-df['tmmx_f'])/5)
     
-df.to_csv("G:\My Drive\Year 2\Thesis\Backup_Plan\weather\\virginia\\all_weather\\all_weather_data.csv", index=False)
+df.to_csv("C:\\Users\\ginal\\Documents\\thesis_data\\1990-2016\\all_weather\\all_weather_data.csv", index=False)
 
 
 

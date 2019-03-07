@@ -1,0 +1,55 @@
+---
+title: "analysis"
+author: "Gina Li"
+date: "March 4, 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stargazer)
+require(mgcv)
+require(gratia)
+require(plyr)
+```
+
+```{r, results='asis'}
+########### READING IN DATA AND SUBSETTING #####################
+
+# read in data, change date column to date type
+data <- read.csv(file="G:/My Drive/Year 2/Thesis/Data/1979-1988/all_data/all_data_weather_mortality_population_dow_lags.csv", header=TRUE, sep=",")
+data$date <- as.Date(data$date, format="%Y-%m-%d")
+data$month <- as.factor(format.Date(data$date, format="%m"))
+# replace all -999s with NA (these are the lag values that don't exist)
+data[data==-999] <-NA
+
+# subset data by summer months and climate regions
+summer_months <- c('04', '05', '06', '07', '08', '09')
+data <- subset(data, format.Date(date, "%m") %in% summer_months)
+
+# reorder dow factor to be Sunday-Saturday, also change value to abbreviations
+data$dow <- factor(data$dow, levels=c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
+data$dow_abbrev <- mapvalues(data$dow, 
+                               from=c("Sunday","Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"), 
+                               to=c("Su","M","T", "W", "Th", "F", "Sa"))
+
+n_data <- data[which(data$clim_div=='NORTHERN'),]
+tw_data <- data[which(data$clim_div=='TIDEWATER'),]
+cm_data <- data[which(data$clim_div=='CENTRAL MOUNTAIN'),]
+wp_data <- data[which(data$clim_div=='WESTERN PIEDMONT'),]
+ep_data <- data[which(data$clim_div=='EASTERN PIEDMONT'),]
+swm_data <- data[which(data$clim_div=='SOUTHWESTERN MOUNTAIN'),]
+
+############ NORTHERN CLIMATE DIVISION #######################
+hist(n_data$death_count, breaks=20)
+plot(n_data$tmmx_f, n_data$death_count)
+stargazer(n_data, keep=c("tmmx_f", "rmax", "death_count"), covariate.labels=c("Daily Maximum Temperature(F)", "Daily Maximum Relative Humidity", "Daily Non-Accidental Death Count"))
+
+
+
+
+```
+
+
+
+

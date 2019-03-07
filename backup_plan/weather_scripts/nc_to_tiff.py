@@ -1,7 +1,7 @@
 from osgeo import gdal
 import glob
 
-data_path = "G:\My Drive\Year 2\Thesis\Backup_Plan\weather\\us\\rmax\\"
+data_path = "C:\\Users\\ginal\\Documents\\thesis_data\\1990-2016\\tmmx\\us\\"
 
 for nc_file in glob.glob(data_path + "*.nc"):
     src_ds = gdal.Open(nc_file)

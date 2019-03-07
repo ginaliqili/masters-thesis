@@ -1,8 +1,8 @@
 import pandas as pd
 
-dem_data_1970s = "G:\My Drive\Year 2\Thesis\Backup_Plan\demographic\\va_1970s.csv"
-dem_data_1980s = "G:\My Drive\Year 2\Thesis\Backup_Plan\demographic\\va_1980s_agg.csv"
-weather_mort_data = "G:\My Drive\Year 2\Thesis\Backup_Plan\\all_data\\all_data_weather_mortality.csv"
+dem_data_1970s = "G:\My Drive\Year 2\Thesis\Data\\1979-1988\demographic\\va_1970s.csv"
+dem_data_1980s = "G:\My Drive\Year 2\Thesis\Data\\1979-1988\demographic\\va_1980s_agg.csv"
+weather_mort_data = "G:\My Drive\Year 2\Thesis\Data\\1979-1988\\all_data\\all_data_weather_mortality.csv"
 va_counties_data = "C:\\Users\ginal\Documents\GitHub\masters-thesis\\backup_plan\demographic_scripts\\va_counties_wgs84.csv"
 
 df_1970s = pd.read_csv(dem_data_1970s)
@@ -49,5 +49,5 @@ for year in range (1980, 1989):
         df_final = df_final.append(df_temp)
         print("appended " + str(year) + " demographic data")
 
-df_final.to_csv("G:\\My Drive\\Year 2\\Thesis\\Backup_Plan\\all_data\\all_data_weather_mortality_population.csv", index=False)       
+df_final.to_csv("G:\My Drive\Year 2\Thesis\Data\\1979-1988\\all_data\\all_data_weather_mortality_population.csv", index=False)       
 

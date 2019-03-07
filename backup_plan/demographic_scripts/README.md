@@ -5,3 +5,5 @@ step 3: organize the 1980s data. subset the VA data and do text to columns in Ex
 Note: county fips code changes https://www.census.gov/geo/reference/county-changes.html
 
 step 4: append the population data to the health and weather data using join_demographic_data.py
+step 5: append day of week using append_dow.py
+step 6: append lag day death counts with lag_days.py
